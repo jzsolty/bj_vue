@@ -1,6 +1,19 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}TEST</h1>
+
+      <ul v-if="posts && posts.length">
+        <li v-for="post in posts" :key="post.key">
+          <p><strong>{{post.title}}</strong></p>
+          <p v-html="post.description"></p>
+        </li>
+      </ul>
+
+<!--      <ul v-if="errors && errors.length">-->
+<!--        <li v-for="error of errors" :key="error.key">-->
+<!--          {{error.message}}-->
+<!--        </li>-->
+<!--      </ul>-->
+    <h1>{{ msg }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
@@ -31,10 +44,29 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  data(){
+    return {
+      posts: [],
+      errors: []
+    }
+  },
+  created() {
+    axios.get(`https://api.bestjobs.eu/jobs`)
+        .then(response => {
+          // JSON responses are automatically parsed.
+          this.posts = response.data
+          console.log(response.data)
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })
   }
 }
 </script>

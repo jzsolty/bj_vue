@@ -119,7 +119,7 @@
         <!--          </Popover>-->
         <!--        </PopoverGroup>-->
         <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-          <div v-if="user">{{ user.name }}</div>
+          <div id="user_name" v-if="user">{{ user }}</div>
           <div v-if="!user">
             <router-link to="/login-register"
                          class="whitespace-nowrap px-4 py-2 rounded-md text-sm font-medium border-blue-900 border text-blue-900 transition ease-in-out duration-300 hover:shadow-lg hover:text-white hover:bg-blue-900">
@@ -213,7 +213,7 @@ import {
   AnnotationIcon,
 } from '@heroicons/vue/outline'
 import {ChevronDownIcon} from '@heroicons/vue/solid'
-import axios, {token} from "@/axios";
+import {user} from "@/axios";
 
 const solutions = [
   {
@@ -294,18 +294,11 @@ export default {
       user: null,
     }
   },
+  computed() {
+    console.log('created')
+  },
   async beforeMount() {
-
-    if (token) {
-      const response = await axios.get('own-resume-detail', {
-        headers: {
-          'Authorization': token
-        }
-      })
-      this.user = response.data.privateInformation;
-
-    }
-
+    this.user = user;
   },
   mounted() {
     console.log(this.user)

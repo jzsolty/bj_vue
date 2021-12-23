@@ -53,6 +53,7 @@
 <script>
 
 import axios from "@/axios";
+import EventBus from "@/event-bus";
 
 export default {
   name: 'LogInRegister',
@@ -73,15 +74,32 @@ export default {
       let token = '13b20c0b0e9890b594e1c15f7c747d048ca11406ce2f1b68f2033f92e5c821229'
       //***************************************************************************************************************
 
-      const url = 'openapi_authenticate';
-      const response = await axios.post(url, this.form);
-      // console.log(response);
 
-      if(response && response.headers['x-apikey']){
-        token = response.headers['x-apikey'];
+      const authenticate_response = await axios.post('openapi_authenticate', this.form);
+      // console.log(authenticate_response);
+
+      if(authenticate_response && authenticate_response.headers['x-apikey']){
+        token = authenticate_response.headers['x-apikey'];
         localStorage.setItem('token', token)
       }
       // console.log(token)
+
+      const user_response = await axios.get('own-resume-detail', {
+        headers: {
+          'Authorization': token
+        }
+      })
+      // console.log(user_response)
+
+      if(user_response && user_response.data.privateInformation){
+        let user_name = user_response.data.privateInformation.email;
+        if(user_response.data.privateInformation.name){
+          user_name = user_response.data.privateInformation.name;
+        }
+        localStorage.setItem('user', user_name)
+        EventBus.$emit('OnLogin', true)
+        // console.log(user_name)
+      }
 
       this.$router.push('/');
 

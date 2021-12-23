@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <hr class="my-10">
     <JobList/>
     <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
@@ -16,6 +15,6 @@ export default {
   components: {
     JobList,
     HelloWorld,
-  }
+  },
 }
 </script>

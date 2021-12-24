@@ -5,7 +5,7 @@
 
 <script>
 import Header from '@/components/Header'
-import EventBus from "@/event-bus";
+
 export default {
   components: {Header},
   data() {
@@ -14,10 +14,7 @@ export default {
     }
   },
   created() {
-    EventBus.$on('OnLogin', (isLogin) => {
-      console.log('APP')
-      this.isLoggedIn = isLogin
-    })
+
   }
 }
 

@@ -46,6 +46,7 @@
           </button>
         </div>
       </form>
+      <button :onclick="increment">TEST</button>
     </div>
   </div>
 </template>
@@ -53,7 +54,6 @@
 <script>
 
 import axios from "@/axios";
-import EventBus from "@/event-bus";
 
 export default {
   name: 'LogInRegister',
@@ -66,6 +66,11 @@ export default {
     }
   },
   methods: {
+    increment() {
+      console.log(this.$st)
+      this.$store.commit('increment')
+      console.log(this.$store.state.count)
+    },
     async submitForm() {
 
       //TEST***********************************************************************************************************
@@ -80,7 +85,7 @@ export default {
 
       if(authenticate_response && authenticate_response.headers['x-apikey']){
         token = authenticate_response.headers['x-apikey'];
-        localStorage.setItem('token', token)
+        // localStorage.setItem('token', token)
       }
       // console.log(token)
 
@@ -96,12 +101,11 @@ export default {
         if(user_response.data.privateInformation.name){
           user_name = user_response.data.privateInformation.name;
         }
-        localStorage.setItem('user', user_name)
-        EventBus.$emit('OnLogin', true)
-        // console.log(user_name)
+        // localStorage.setItem('user', user_name)
+        console.log(user_name)
       }
 
-      this.$router.push('/');
+      // this.$router.push('/');
 
     }
   }

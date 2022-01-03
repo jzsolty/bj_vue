@@ -5,11 +5,11 @@
         <div v-for="post in posts" :key="post.key"
              class="border rounded bg-white py-12 px-6 m-4 hover:shadow-lg">
           <div class="w-6/12 h-20 mb-4 mx-auto">
-<!--            <img :src="post.employer.logoUrl" :alt="post.employer.name"-->
-<!--                 class="h-full w-auto m-auto object-contain"/>-->
+            <img v-if="post.employer" :src="post.employer.logoUrl" :alt="post.employer.name"
+                 class="h-full w-auto m-auto object-contain"/>
           </div>
           <h1 class="text-base font-bold text-center mb-6">{{ post.title }}</h1>
-<!--          <h2 class="text-sm text-gray-400 text-center mb-6">{{ post.employer.name }}</h2>-->
+          <h2 v-if="post.employer" class="text-sm text-gray-400 text-center mb-6">{{ post.employer.name }}</h2>
         </div>
       </div>
     </div>
@@ -17,28 +17,22 @@
 </template>
 
 <script>
-// import axios, {token} from '@/axios';
+
+import {ref} from "vue";
+import {jobList} from "@/methods/job/joblist";
 
 export default {
   name: 'JobList',
-  data() {
+  setup() {
+    const posts = ref([]);
+
+    jobList(posts)
+
     return {
-      posts: [],
-      next: [],
-      errors: [],
+      posts,
     }
+
   },
-  // async created() {
-  //   const jobLimit = 12,
-  //         url = `job-operation/list?limit=${jobLimit}`;
-  //
-  //   const response = await axios.get(url, {
-  //     headers: {
-  //       'Authorization': token,
-  //     }
-  //   })
-  //   this.posts = response.data
-  //   console.log(response);
-  // }
+
 }
 </script>

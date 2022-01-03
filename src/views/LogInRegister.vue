@@ -9,7 +9,7 @@
           Sign in to your account.
         </p>
       </div>
-      <form class="mt-8 space-y-6" v-on:submit.prevent="submitForm">
+      <form class="mt-8 space-y-6" v-on:submit.prevent="submitForm(form)">
         <input type="hidden" name="remember" value="true"/>
         <div class="rounded-md shadow-sm -space-y-px">
           <div>
@@ -46,68 +46,27 @@
           </button>
         </div>
       </form>
-      <button :onclick="increment">TEST</button>
     </div>
   </div>
 </template>
 
 <script>
 
-import axios from "@/axios";
+import {ref} from "vue";
+import {submitForm} from "@/methods/auth/authMetods";
 
 export default {
   name: 'LogInRegister',
-  data() {
-    return {
-      form: {
-        password: '',
-        email: '',
-      },
-    }
+  setup() {
+    const form = ref({
+          password: '',
+          email: '',
+        }
+    )
+    return {form}
   },
   methods: {
-    increment() {
-      console.log(this.$st)
-      this.$store.commit('increment')
-      console.log(this.$store.state.count)
-    },
-    async submitForm() {
-
-      //TEST***********************************************************************************************************
-      // user: szilard@neogen.biz
-      // pass: szilard
-      let token = '13b20c0b0e9890b594e1c15f7c747d048ca11406ce2f1b68f2033f92e5c821229'
-      //***************************************************************************************************************
-
-
-      const authenticate_response = await axios.post('openapi_authenticate', this.form);
-      // console.log(authenticate_response);
-
-      if(authenticate_response && authenticate_response.headers['x-apikey']){
-        token = authenticate_response.headers['x-apikey'];
-        // localStorage.setItem('token', token)
-      }
-      // console.log(token)
-
-      const user_response = await axios.get('own-resume-detail', {
-        headers: {
-          'Authorization': token
-        }
-      })
-      // console.log(user_response)
-
-      if(user_response && user_response.data.privateInformation){
-        let user_name = user_response.data.privateInformation.email;
-        if(user_response.data.privateInformation.name){
-          user_name = user_response.data.privateInformation.name;
-        }
-        // localStorage.setItem('user', user_name)
-        console.log(user_name)
-      }
-
-      // this.$router.push('/');
-
-    }
+    submitForm
   }
 }
 </script>

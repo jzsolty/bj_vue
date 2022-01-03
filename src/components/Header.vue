@@ -119,8 +119,51 @@
         <!--          </Popover>-->
         <!--        </PopoverGroup>-->
         <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-          <div id="user_name" v-if="user">{{ user }}</div>
-          <div v-if="!user">
+
+          <Menu v-if="$store.state.user" as="div" class="relative inline-block text-left">
+            <div>
+              <MenuButton
+                  class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
+                {{ $store.state.user }}
+                <ChevronDownIcon class="-mr-1 ml-2 h-5 w-5" aria-hidden="true"/>
+              </MenuButton>
+            </div>
+
+            <transition enter-active-class="transition ease-out duration-100"
+                        enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100"
+                        leave-active-class="transition ease-in duration-75"
+                        leave-from-class="transform opacity-100 scale-100"
+                        leave-to-class="transform opacity-0 scale-95">
+              <MenuItems
+                  class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                <div class="py-1">
+                  <MenuItem v-slot="{ active }">
+                    <a href="#"
+                       :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">Account
+                      settings</a>
+                  </MenuItem>
+                  <MenuItem v-slot="{ active }">
+                    <a href="#"
+                       :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">Support</a>
+                  </MenuItem>
+                  <MenuItem v-slot="{ active }">
+                    <a href="#"
+                       :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">License</a>
+                  </MenuItem>
+                  <MenuItem v-slot="{ active }">
+                    <button @click="signOut" type="submit"
+                            :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block w-full text-left px-4 py-2 text-sm']">
+                      Sign out
+                    </button>
+                  </MenuItem>
+                </div>
+              </MenuItems>
+            </transition>
+          </Menu>
+          <!--          <div v-if="$store.state.user" id="user_name">-->
+          <!--            {{ $store.state.user }}-->
+          <!--          </div>-->
+          <div v-if="!$store.state.user">
             <router-link to="/login-register"
                          class="whitespace-nowrap px-4 py-2 rounded-md text-sm font-medium border-blue-900 border text-blue-900 transition ease-in-out duration-300 hover:shadow-lg hover:text-white hover:bg-blue-900">
               Sign in / Sign Up
@@ -196,7 +239,16 @@
 </template>
 
 <script>
-import {Popover, PopoverButton, PopoverGroup, PopoverPanel} from '@headlessui/vue'
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+  Popover,
+  PopoverButton,
+  PopoverGroup,
+  PopoverPanel
+} from '@headlessui/vue'
 import {
   BookmarkAltIcon,
   CalendarIcon,
@@ -213,7 +265,6 @@ import {
   AnnotationIcon,
 } from '@heroicons/vue/outline'
 import {ChevronDownIcon} from '@heroicons/vue/solid'
-import {user} from "@/axios";
 
 const solutions = [
   {
@@ -283,6 +334,10 @@ export default {
     MenuIcon,
     XIcon,
     AnnotationIcon,
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuItems,
   },
   setup() {
     return {
@@ -292,16 +347,15 @@ export default {
       resources,
       recentPosts,
       user: null,
+      active: null,
     }
   },
-  computed() {
-    console.log('created')
-  },
-  async beforeMount() {
-    this.user = user;
-  },
-  mounted() {
-    console.log(this.user)
+  methods: {
+    signOut() {
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
+      this.$store.commit('userSet', null)
+    }
   }
 }
 </script>

@@ -4,12 +4,12 @@ import { createStore } from 'vuex'
 const store = createStore({
     state () {
         return {
-            count: 0
+            user: localStorage.getItem('user'),
         }
     },
     mutations: {
-        increment (state) {
-            state.count++
+        userSet (state, user){
+            state.user = user;
         }
     }
 })

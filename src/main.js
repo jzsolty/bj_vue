@@ -6,4 +6,4 @@ import './axios'
 
 import './assets/tailwind.css'
 
-createApp(App).use(router, store).mount('#app')
+createApp(App).use(router).use(store).mount('#app')

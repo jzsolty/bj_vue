@@ -12,6 +12,14 @@ module.exports = {
       xl: '1280px',
       '2xl': '1536px',
     },
+    truncate: {
+      lines: {
+        2: '2',
+        3: '3',
+        5: '5',
+        8: '8',
+      }
+    },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
@@ -967,5 +975,8 @@ module.exports = {
     wordBreak: ['responsive'],
     zIndex: ['responsive', 'focus-within', 'focus'],
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+    require('tailwindcss-truncate-multiline')(),
+  ],
 }

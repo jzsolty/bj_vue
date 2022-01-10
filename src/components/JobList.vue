@@ -4,13 +4,22 @@
       <div class="w-10/12 mx-auto">
         <div class="grid grid-cols-2 md:grid-cols-4" v-if="posts && posts.length">
           <div v-for="post in posts" :key="post.key"
-               class="border rounded bg-white py-12 px-6 m-4 hover:shadow-lg">
+               class="flex flex-col justify-around border rounded bg-white p-6 m-4 hover:shadow-lg">
             <div class="w-6/12 h-20 mb-4 mx-auto">
               <img v-if="post.employer" :src="post.employer.logoUrl" :alt="post.employer.name"
                    class="h-full w-auto m-auto object-contain"/>
             </div>
-            <h1 class="text-base font-bold text-center mb-6 break-words">{{ post.title }}</h1>
-            <h2 v-if="post.employer" class="text-sm text-gray-400 text-center mb-6">{{ post.employer.name }}</h2>
+            <h1 class="text-base font-bold text-center break-words mb-0 truncate-2-lines">{{ post.title }}</h1>
+            <h2 v-if="post.employer" class="text-xs text-gray-400 text-center mb-6">{{ post.employer.name }}</h2>
+            <div class="flex items-center justify-center mb-6">
+              <div class="relative mr-2">
+                <div class="flex"><i v-for="index in 5" :key="index" class="far fa-star text-gray-500"></i></div>
+                <div class="overflow-hidden flex absolute top-0 text-gray-500"
+                     :style="{width: post.employer.ratingsAverage * 20 + '%'}"><i
+                    v-for="index in 5" :key="index" class="fas fa-star"></i></div>
+              </div>
+              <span class="text-xs">{{ post.employer.ratingsAverage }}</span>
+            </div>
             <div class="grid grid-cols-2">
               <div v-if="post.locations.length > 0">
                 <span class="text-gray-500 font-bold text-xs">LOCATION:</span>
@@ -24,7 +33,7 @@
               </div>
               <div v-if="!post.salaryConfidential" class="text-right">
                 <span class="text-gray-500 font-bold text-xs">SALARY:</span>
-                <div class="text-xs">{{post.netSalaryMin}}-{{ post.netSalary }}</div>
+                <div class="text-xs">{{ post.netSalaryMin }}-{{ post.netSalary }}</div>
               </div>
             </div>
           </div>
@@ -58,8 +67,14 @@ export default {
 
     jobList(posts)
 
+    const flot2int = (floatvalue) => {
+      return Math.floor(floatvalue)
+    }
+
+
     onMounted(() => {
       window.addEventListener('scroll', handleScroll)
+      // flot2int()
     })
 
     onUnmounted(() => {
@@ -97,6 +112,7 @@ export default {
       page,
       loading,
       loadMore,
+      flot2int,
     }
 
   },

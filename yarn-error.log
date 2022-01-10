@@ -1,11 +1,11 @@
 Arguments: 
-  /home/zsolt/.nvm/versions/node/v14.17.1/bin/node /usr/share/yarn/bin/yarn.js add @headlessui/vue @heroicons/vue/outline @heroicons/vue/solid
+  /home/zsolt/.nvm/versions/node/v14.17.1/bin/node /home/zsolt/.nvm/versions/node/v14.17.1/bin/yarn add @free-regular-svg-icons
 
 PATH: 
-  /home/zsolt/.nvm/versions/node/v14.17.1/bin:/home/zsolt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+  /home/zsolt/.nvm/versions/node/v14.17.1/bin:/home/zsolt/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/zsolt/PhpstormProjects/bj_vue/node_modules/.bin
 
 Yarn version: 
-  1.22.15
+  1.22.17
 
 Node version: 
   14.17.1
@@ -14,13 +14,13 @@ Platform:
   linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@heroicons%2fvue/outline: Request "https://registry.yarnpkg.com/@heroicons%2fvue/outline" returned a 405
-      at Request.params.callback [as _callback] (/usr/share/yarn/lib/cli.js:67040:18)
-      at Request.self.callback (/usr/share/yarn/lib/cli.js:140885:22)
+  Error: https://registry.yarnpkg.com/@free-regular-svg-icons: Request "https://registry.yarnpkg.com/@free-regular-svg-icons" returned a 405
+      at Request.params.callback [as _callback] (/home/zsolt/.nvm/versions/node/v14.17.1/lib/node_modules/yarn/lib/cli.js:67038:18)
+      at Request.self.callback (/home/zsolt/.nvm/versions/node/v14.17.1/lib/node_modules/yarn/lib/cli.js:140883:22)
       at Request.emit (events.js:375:28)
-      at Request.<anonymous> (/usr/share/yarn/lib/cli.js:141857:10)
+      at Request.<anonymous> (/home/zsolt/.nvm/versions/node/v14.17.1/lib/node_modules/yarn/lib/cli.js:141855:10)
       at Request.emit (events.js:375:28)
-      at IncomingMessage.<anonymous> (/usr/share/yarn/lib/cli.js:141779:12)
+      at IncomingMessage.<anonymous> (/home/zsolt/.nvm/versions/node/v14.17.1/lib/node_modules/yarn/lib/cli.js:141777:12)
       at Object.onceWrapper (events.js:481:28)
       at IncomingMessage.emit (events.js:387:35)
       at endReadableNT (internal/streams/readable.js:1317:12)
@@ -39,7 +39,14 @@ npm manifest:
     "dependencies": {
       "@babel/core": "^7.16.0",
       "@babel/preset-env": "^7.16.4",
+      "@fortawesome/fontawesome-svg-core": "^1.2.36",
+      "@fortawesome/free-solid-svg-icons": "^5.15.4",
+      "@fortawesome/vue-fontawesome": "^2.0.6",
+      "@headlessui/vue": "^1.4.2",
+      "@heroicons/vue": "^1.0.5",
       "@tailwindcss/postcss7-compat": "^2.2.17",
+      "@vue-hero-icons/outline": "^1.7.2",
+      "@vue-hero-icons/solid": "^1.7.2",
       "autoprefixer": "^9",
       "axios": "^0.24.0",
       "babel-loader": "^8.2.3",
@@ -52,6 +59,7 @@ npm manifest:
       "vue-loader": "^15.9.8",
       "vue-router": "^4.0.0-0",
       "vue-template-compiler": "^2.6.14",
+      "vuex": "^4.0.2",
       "webpack": "^5.64.4",
       "webpack-cli": "^4.9.1",
       "webpack-dev-server": "^4.6.0"
@@ -1010,6 +1018,30 @@ Lockfile:
     resolved "https://registry.npmjs.org/@discoveryjs/json-ext/-/json-ext-0.5.6.tgz"
     integrity sha512-ws57AidsDvREKrZKYffXddNkyaF14iHNHm8VQnZH6t99E8gczjNN0GpvcGny0imC80yQ0tHz1xVUKk/KFQSUyA==
   
+  "@fortawesome/fontawesome-common-types@^0.2.36":
+    version "0.2.36"
+    resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.2.36.tgz#b44e52db3b6b20523e0c57ef8c42d315532cb903"
+    integrity sha512-a/7BiSgobHAgBWeN7N0w+lAhInrGxksn13uK7231n2m8EDPE3BMCl9NZLTGrj9ZXfCmC6LM0QLqXidIizVQ6yg==
+  
+  "@fortawesome/fontawesome-svg-core@^1.2.36":
+    version "1.2.36"
+    resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-1.2.36.tgz#4f2ea6f778298e0c47c6524ce2e7fd58eb6930e3"
+    integrity sha512-YUcsLQKYb6DmaJjIHdDWpBIGCcyE/W+p/LMGvjQem55Mm2XWVAP5kWTMKWLv9lwpCVjpLxPyOMOyUocP1GxrtA==
+    dependencies:
+      "@fortawesome/fontawesome-common-types" "^0.2.36"
+  
+  "@fortawesome/free-solid-svg-icons@^5.15.4":
+    version "5.15.4"
+    resolved "https://registry.yarnpkg.com/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-5.15.4.tgz#2a68f3fc3ddda12e52645654142b9e4e8fbb6cc5"
+    integrity sha512-JLmQfz6tdtwxoihXLg6lT78BorrFyCf59SAwBM6qV/0zXyVeDygJVb3fk+j5Qat+Yvcxp1buLTY5iDh1ZSAQ8w==
+    dependencies:
+      "@fortawesome/fontawesome-common-types" "^0.2.36"
+  
+  "@fortawesome/vue-fontawesome@^2.0.6":
+    version "2.0.6"
+    resolved "https://registry.yarnpkg.com/@fortawesome/vue-fontawesome/-/vue-fontawesome-2.0.6.tgz#87e691ed87f28f4667238573a29743f543a087f6"
+    integrity sha512-V3vT3flY15AKbUS31aZOP12awQI3aAzkr2B1KnqcHLmwrmy51DW3pwyBczKdypV8QxBZ8U68Hl2XxK2nudTxpg==
+  
   "@hapi/address@2.x.x":
     version "2.1.4"
     resolved "https://registry.npmjs.org/@hapi/address/-/address-2.1.4.tgz"
@@ -1041,6 +1073,16 @@ Lockfile:
     integrity sha512-tAag0jEcjwH+P2quUfipd7liWCNX2F8NvYjQp2wtInsZxnMlypdw0FtAOLxtvvkO+GSRRbmNi8m/5y42PQJYCQ==
     dependencies:
       "@hapi/hoek" "^8.3.0"
+  
+  "@headlessui/vue@^1.4.2":
+    version "1.4.2"
+    resolved "https://registry.yarnpkg.com/@headlessui/vue/-/vue-1.4.2.tgz#1098f52cb6c583772708a980b3487222ac0ae65e"
+    integrity sha512-+uOaPwHncxHZ6JBwYycu3YxDDrY0v1tcxCtK04H1WGBLBm07dqVi38Q2RB7eY867FUhD0sL6q+Fj69rVn8P0OQ==
+  
+  "@heroicons/vue@^1.0.5":
+    version "1.0.5"
+    resolved "https://registry.yarnpkg.com/@heroicons/vue/-/vue-1.0.5.tgz#ccef02a9a75e47129a0b8faf5d1d93bd90723264"
+    integrity sha512-idWtp20Fjr7mqnD7EdGDUDi83oWHnx3SwyuQY6GZyF33OApzpBOLxz7xa4t6rPOddGz9tI5RGnndLk+ake7ijQ==
   
   "@intervolga/optimize-cssnano-plugin@^1.0.5":
     version "1.0.6"
@@ -1330,6 +1372,20 @@ Lockfile:
       "@types/webpack-sources" "*"
       anymatch "^3.0.0"
       source-map "^0.6.0"
+  
+  "@vue-hero-icons/outline@^1.7.2":
+    version "1.7.2"
+    resolved "https://registry.yarnpkg.com/@vue-hero-icons/outline/-/outline-1.7.2.tgz#ec723ee45e142d2249948c58be65f5d35e3c4ed3"
+    integrity sha512-mgMpncarjZHXY1K2tyjbYHf53yQG9amroDR9t2iH/umpsN8+f8RNcTy1m131EZ8WBCm8MpF97XpXPV129rvtVg==
+    dependencies:
+      babel-helper-vue-jsx-merge-props "^2.0.3"
+  
+  "@vue-hero-icons/solid@^1.7.2":
+    version "1.7.2"
+    resolved "https://registry.yarnpkg.com/@vue-hero-icons/solid/-/solid-1.7.2.tgz#40ce7dca69e216e84af5e3ed7635432b360ac024"
+    integrity sha512-ngjgdYgdjXp8BuHmx998Kl2tAmbatJXdYO8Cut+DXo9OVGZMuVmIzIjnar4H5Wf9wFVdCuag+HazLEu9F7T3cw==
+    dependencies:
+      babel-helper-vue-jsx-merge-props "^2.0.3"
   
   "@vue/babel-helper-vue-jsx-merge-props@^1.2.1":
     version "1.2.1"
@@ -1633,6 +1689,11 @@ Lockfile:
       vue-template-es2015-compiler "^1.9.0"
     optionalDependencies:
       prettier "^1.18.2 || ^2.0.0"
+  
+  "@vue/devtools-api@^6.0.0-beta.11":
+    version "6.0.0-beta.21.1"
+    resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-6.0.0-beta.21.1.tgz#f1410f53c42aa67fa3b01ca7bdba891f69d7bc97"
+    integrity sha512-FqC4s3pm35qGVeXRGOjTsRzlkJjrBLriDS9YXbflHLsfA9FrcKzIyWnLXoNm+/7930E8rRakXuAc2QkC50swAw==
   
   "@vue/devtools-api@^6.0.0-beta.18":
     version "6.0.0-beta.20.1"
@@ -2348,6 +2409,11 @@ Lockfile:
       "@babel/types" "^7.7.0"
       eslint-visitor-keys "^1.0.0"
       resolve "^1.12.0"
+  
+  babel-helper-vue-jsx-merge-props@^2.0.3:
+    version "2.0.3"
+    resolved "https://registry.yarnpkg.com/babel-helper-vue-jsx-merge-props/-/babel-helper-vue-jsx-merge-props-2.0.3.tgz#22aebd3b33902328e513293a8e4992b384f9f1b6"
+    integrity sha512-gsLiKK7Qrb7zYJNgiXKpXblxbV5ffSwR0f5whkPAaBAR4fhi6bwRZxX9wBlIc5M/v8CCkXUbXZL4N/nSE97cqg==
   
   babel-loader@^8.1.0, babel-loader@^8.2.3:
     version "8.2.3"
@@ -9400,6 +9466,13 @@ Lockfile:
       "@vue/runtime-dom" "3.2.23"
       "@vue/server-renderer" "3.2.23"
       "@vue/shared" "3.2.23"
+  
+  vuex@^4.0.2:
+    version "4.0.2"
+    resolved "https://registry.yarnpkg.com/vuex/-/vuex-4.0.2.tgz#f896dbd5bf2a0e963f00c67e9b610de749ccacc9"
+    integrity sha512-M6r8uxELjZIK8kTKDGgZTYX/ahzblnzC4isU1tpmEuOIIKmV+TRdc+H4s8ds2NuZ7wpUTdGRzJRtoj+lI+pc0Q==
+    dependencies:
+      "@vue/devtools-api" "^6.0.0-beta.11"
   
   watchpack-chokidar2@^2.0.1:
     version "2.0.1"

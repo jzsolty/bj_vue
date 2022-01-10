@@ -11,7 +11,7 @@ export const jobList = async (posts) => {
 
         const response = await axiosOld.get(url)
         posts.value = response.data
-        // console.log(response);
+        console.log(response);
 
     } else {
 

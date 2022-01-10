@@ -9,14 +9,32 @@
               <img v-if="post.employer" :src="post.employer.logoUrl" :alt="post.employer.name"
                    class="h-full w-auto m-auto object-contain"/>
             </div>
-            <h1 class="text-base font-bold text-center mb-6">{{ post.title }}</h1>
+            <h1 class="text-base font-bold text-center mb-6 break-words">{{ post.title }}</h1>
             <h2 v-if="post.employer" class="text-sm text-gray-400 text-center mb-6">{{ post.employer.name }}</h2>
+            <div class="grid grid-cols-2">
+              <div v-if="post.locations.length > 0">
+                <span class="text-gray-500 font-bold text-xs">LOCATION:</span>
+                <div class="flex flex-wrap">
+                  <div class="" v-for="(address, index) in post.locations" v-bind:key="address">
+                    <div class="text-xs text-gray-500" v-if="index < 2"><span
+                        v-if="index != 0 && index < 2">, </span>{{ address.city.name }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div v-if="!post.salaryConfidential" class="text-right">
+                <span class="text-gray-500 font-bold text-xs">SALARY:</span>
+                <div class="text-xs">{{post.netSalaryMin}}-{{ post.netSalary }}</div>
+              </div>
+            </div>
           </div>
         </div>
         <div :class='loading + " justify-center"'>
-          <svg class="animate-spin -ml-1 mr-3 h-10 w-10 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <svg class="animate-spin -ml-1 mr-3 h-10 w-10 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+               viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="blue" stroke-width="4"></circle>
-            <path class="opacity-75" fill="blue" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            <path class="opacity-75" fill="blue"
+                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
           </svg>
         </div>
       </div>
@@ -51,8 +69,9 @@ export default {
     const handleScroll = () => {
       let element = scrollComponent.value,
           bottom = Math.floor(element.getBoundingClientRect().bottom)
-      console.log(bottom)
-      console.log(window.innerHeight)
+
+      // console.log(bottom)
+      // console.log(window.innerHeight)
       if (bottom <= window.innerHeight) {
         loadMore(page);
       }
